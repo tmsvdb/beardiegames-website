@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>beardiegames::Contact</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="homepage.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+
+  body {
+    font-family: "Lato", sans-serif
+  }
+
+  .contact-box {
+    max-width:800px;
+    height: 600px;
+    padding-top: 64px!important;
+    padding-bottom: 64px!important;
+    padding-right: 16px;
+    padding-left: 16px;
+    margin: auto;
+    box-sizing: inherit;
+    display: block;
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .contact-header {
+    height: 45;
+    text-align: center!important;
+    letter-spacing: 4px;
+    font-family: "Segoe UI",Arial,sans-serif;
+    font-weight: 400;
+    margin: 10px 0;
+    font-size: 30px;
+    box-sizing: inherit;
+    display: block;
+    -webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+  }
+
+  .contact-body {
+    padding-top: 32px!important;
+    padding-bottom: 32px!important;
+    box-sizing: inherit;
+    display: block;
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+</style>
+
+</head>
+<body>
+
+
+  <!-- The Contact Section -->
+  <div class="contact-box">
+    <h2 class="contact-header">CONTACT</h2>
+    <div class="contact-body">
+      <div class="w3-col m6 w3-large w3-margin-bottom">
+        <i class="fa fa-map-marker" style="width:30px"></i> Annadal Campus
+        <br>&nbsp &nbsp &nbsp &nbsp &nbsp Brouwersweg 100
+        <br>&nbsp &nbsp &nbsp &nbsp &nbsp 6216EG Maastricht (NL)
+        <br>
+        <br>
+        <i class="fa fa-phone" style="width:30px"></i> Phone: +31(0) 6 517 109 53<br>
+        <br>
+        <i class="fa fa-envelope" style="width:30px"> </i> Email: thomas@beardiegames.com<br>
+      </div>
+
+      <div class="w3-col m6">
+        <p class="w3-opacity w3-center"><i>Send me a message</i></p>
+        <form method="post" action="email.php">
+          <!--
+          <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+            <div class="w3-half">
+              <input class="w3-input w3-border" type="text" placeholder="Name" required name="name">
+            </div>
+            <div class="w3-half">
+              <input class="w3-input w3-border" type="text" placeholder="Email" required name="email">
+            </div>
+          </div>
+          <input class="w3-input w3-border" type="text" placeholder="Message" required name="message">
+          -->
+          <input style="border: 1px solid powderblue; padding: 5px; width:100%, height:15px" type="text" placeholder="Name" required name="name"/>
+          <input style="border: 1px solid powderblue; padding: 5px; width:100%, height:15px" type="text" placeholder="Email" required name="email"/>
+          <textarea style=" border: 1px solid powderblue; padding: 5px; width:100%, height:15px" required name="message" rows="10" cols="30"></textarea>
+          <button class="w3-button w3-black w3-section w3-right" type="submit">SEND</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- Add Google Maps -->
+  <div id="googleMap" style="display: block; margin: auto; height:400px; width: 768px;" class="w3-grayscale-max"></div>
+  <script>
+
+  // resize events
+  window.onresize = function(event) {
+    myMap();
+  };
+
+  // setmaps
+  function myMap() {
+    myCenter=new google.maps.LatLng(50.847694, 5.668789);
+    var mapOptions= {
+      center:myCenter,
+      zoom:12, scrollwheel: false, draggable: false,
+      mapTypeId:google.maps.MapTypeId.ROADMAP
+    };
+    var map=new google.maps.Map(document.getElementById("googleMap"),mapOptions);
+
+    var marker = new google.maps.Marker({
+      position: myCenter,
+    });
+    marker.setMap(map);
+  }
+  </script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaadntfXzksNjsi8_YgMZlZVEuP5WrVXQ&callback=myMap"></script>
+  <!--
+  To use this code on your website, get a free API key from Google.
+  Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
+  -->
+
+</body>
+</html>
