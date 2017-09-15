@@ -5,7 +5,7 @@
   $headers .= 'From: Your name <thomas@beardiegames.com>' . "\r\n";
   $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
-  $success = mail('thomas@beardiegames.com', 'contact message', $message, $headers);
+  $success = mail('thomas@beardiegames.com', 'Contact Msg (' . $_POST['name'] . ')', $message, $headers);
 
   if ($success) {
    header("Location: /email_success.html");

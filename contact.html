@@ -4,107 +4,134 @@
   <title>beardiegames::Contact</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="homepage.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<style>
+  <style>
 
   body {
-    font-family: "Lato", sans-serif
+    font-family: Verdana, sans-serif;
   }
 
-  .contact-box {
+  #container {
     max-width:800px;
-    height: 600px;
-    padding-top: 64px!important;
-    padding-bottom: 64px!important;
-    padding-right: 16px;
-    padding-left: 16px;
+    height: 1000px;
+    width:100%;
     margin: auto;
-    box-sizing: inherit;
-    display: block;
-    font-family: 'Lato', sans-serif;
-    font-size: 15px;
-    line-height: 1.5;
   }
 
-  .contact-header {
-    height: 45;
-    text-align: center!important;
-    letter-spacing: 4px;
-    font-family: "Segoe UI",Arial,sans-serif;
-    font-weight: 400;
-    margin: 10px 0;
-    font-size: 30px;
-    box-sizing: inherit;
-    display: block;
-    -webkit-margin-before: 0.83em;
-    -webkit-margin-after: 0.83em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
+  #icon-container {
+    width:100%;
+    height: 100px;
+    margin: auto;
+    padding-bottom: 20px;
   }
 
-  .contact-body {
-    padding-top: 32px!important;
-    padding-bottom: 32px!important;
-    box-sizing: inherit;
-    display: block;
-    font-family: 'Lato', sans-serif;
-    font-size: 15px;
-    line-height: 1.5;
+  #left-column {
+    float: left;
+    border: 1px;
+    width: 33%;
   }
 
-</style>
+  #mid-column {
+    float: left;
+    width: 33%;
+    display: block;
+  }
 
+  #right-column {
+    float: left;
+    width: 33%;
+    display: block;
+  }
+
+  #email-form {
+    padding-bottom: 40px;
+  }
+
+  #googleMap {
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+  }
+
+  .input-field {
+    padding: 8px;
+    display: block;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+  }
+
+  .button {
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  </style>
 </head>
+
 <body>
-
-
   <!-- The Contact Section -->
-  <div class="contact-box">
-    <h2 class="contact-header">CONTACT</h2>
-    <div class="contact-body">
-      <div class="w3-col m6 w3-large w3-margin-bottom">
-        <i class="fa fa-map-marker" style="width:30px"></i> Annadal Campus
-        <br>&nbsp &nbsp &nbsp &nbsp &nbsp Brouwersweg 100
-        <br>&nbsp &nbsp &nbsp &nbsp &nbsp 6216EG Maastricht (NL)
-        <br>
-        <br>
-        <i class="fa fa-phone" style="width:30px"></i> Phone: +31(0) 6 517 109 53<br>
-        <br>
-        <i class="fa fa-envelope" style="width:30px"> </i> Email: thomas@beardiegames.com<br>
+  <div id="container">
+
+    <!-- Header -->
+    <image src="assets/contact/contact_header.png" style="padding-bottom: 20px;"></image>
+
+    <!-- Contact info -->
+    <div id= "icon-container">
+      <div id="left-column">
+        <i class="fa fa-map-marker" style="width:30px"></i><b>Location</b><br>
+        Annadal Campus<br>
+        Brouwersweg 100<br>
+        6216EG Maastricht (NL)<br>
       </div>
 
-      <div class="w3-col m6">
-        <p class="w3-opacity w3-center"><i>Send me a message</i></p>
-        <form method="post" action="email.php">
-          <!--
-          <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-            <div class="w3-half">
-              <input class="w3-input w3-border" type="text" placeholder="Name" required name="name">
-            </div>
-            <div class="w3-half">
-              <input class="w3-input w3-border" type="text" placeholder="Email" required name="email">
-            </div>
-          </div>
-          <input class="w3-input w3-border" type="text" placeholder="Message" required name="message">
-          -->
-          <input style="border: 1px solid powderblue; padding: 5px; width:100%, height:15px" type="text" placeholder="Name" required name="name"/>
-          <input style="border: 1px solid powderblue; padding: 5px; width:100%, height:15px" type="text" placeholder="Email" required name="email"/>
-          <textarea style=" border: 1px solid powderblue; padding: 5px; width:100%, height:15px" required name="message" rows="10" cols="30"></textarea>
-          <button class="w3-button w3-black w3-section w3-right" type="submit">SEND</button>
-        </form>
+      <div id="mid-column">
+        <i class="fa fa-phone" style="width:30px"></i><b>Phone</b><br>
+        +31(0) 6 517 109 53<br>
+        <br>
       </div>
 
+      <div id="right-column">
+        <i class="fa fa-envelope" style="width:30px"></i><b>Email</b><br>
+        thomas@beardiegames.com<br>
+      </div>
     </div>
+
+    <!-- Quick email box -->
+    <image src="assets/contact/message_header.png" style="padding-bottom: 0px;"></image>
+
+    <form id="email-form">
+      <p>
+      <label>Name</label>
+      <input required name="name" class="input-field" type="text"></p>
+      <p>
+      <label>Email</label>
+      <input required name="email" class="input-field" type="text"></p>
+      <p>
+      <label>Message</label>
+      <input required name="message" class="input-field" type="text"></p>
+      <p>
+      <button class="button" type="submit">SEND</button>
+    </form>
+
+    <!-- Google maps location -->
+    <image src="assets/contact/maps_header.png" style="padding-bottom: 20px;"></image>
+    <div id="googleMap" style="display: block; margin: auto; height:400px; width:100%" class="w3-grayscale-max"></div>
+
   </div>
 
 
-  <!-- Add Google Maps -->
-  <div id="googleMap" style="display: block; margin: auto; height:400px; width: 768px;" class="w3-grayscale-max"></div>
-  <script>
 
+<script>
   // resize events
   window.onresize = function(event) {
     myMap();
@@ -125,13 +152,13 @@
     });
     marker.setMap(map);
   }
-  </script>
+</script>
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaadntfXzksNjsi8_YgMZlZVEuP5WrVXQ&callback=myMap"></script>
-  <!--
-  To use this code on your website, get a free API key from Google.
-  Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
-  -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaadntfXzksNjsi8_YgMZlZVEuP5WrVXQ&callback=myMap"></script>
+<!--
+To use this code on your website, get a free API key from Google.
+Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
+-->
 
 </body>
 </html>
