@@ -4,75 +4,27 @@
 <title>Beardiegames</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="homepage.css">
+<!--<link rel="stylesheet" href="homepage.css">-->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
-body {font-family: "Lato", sans-serif}
-.mySlides {display: none}
+  body {font-family: "Lato", sans-serif}
+  .mySlides {display: none}
 </style>
 
 <body>
 
-<!-- Navbar -->
-<div class="w3-top">
-  <div class="w3-bar w3-black w3-card-2">
-    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-    <button class="w3-bar-item w3-button w3-padding-large" onclick="setContentFrame('contact.html')">HOME</button><!--
-    <button class="w3-bar-item w3-button w3-padding-large w3-hide-small" onclick="setContentFrame('games.html')">GAMES</button>
-    <button class="w3-bar-item w3-button w3-padding-large w3-hide-small" onclick="setContentFrame('art.html')">ART</button>
-    <button class="w3-bar-item w3-button w3-padding-large w3-hide-small" onclick="setContentFrame('courses.html')">COURSES</button>
-    <button class="w3-bar-item w3-button w3-padding-large w3-hide-small" onclick="setContentFrame('contact.html')">CONTACT</button>-->
-    <!--
-    <a href="#" class="w3-bar-item w3-button w3-padding-large">HOME</a>
-    <a href="#games" class="w3-bar-item w3-button w3-padding-large w3-hide-small">GAMES</a>
-    <a href="#art" class="w3-bar-item w3-button w3-padding-large w3-hide-small">ART</a>
-    <a href="#courses" class="w3-bar-item w3-button w3-padding-large w3-hide-small">COURSES</a>
-    <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CONTACT</a>
-    -->
-    <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
-  </div>
-</div>
-
-<!-- Navbar on small screens -->
-<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
-  <button class="w3-bar-item w3-button w3-padding-large" onclick="setContentFrame('games.html')">GAMES</button>
-  <button class="w3-bar-item w3-button w3-padding-large" onclick="setContentFrame('art.html')">ART</button>
-  <button class="w3-bar-item w3-button w3-padding-large" onclick="setContentFrame('courses.html')">COURSES</button>
-  <button class="w3-bar-item w3-button w3-padding-large" onclick="setContentFrame('contact.html')">CONTACT</button>
-  <!--
-  <a href="#games" class="w3-bar-item w3-button w3-padding-large">GAMES</a>
-  <a href="#art" class="w3-bar-item w3-button w3-padding-large">ART</a>
-  <a href="#courses" class="w3-bar-item w3-button w3-padding-large">COURSES</a>
-  <a href="#contact" class="w3-bar-item w3-button w3-padding-large">CONTACT</a>
--->
-</div>
-
-
-<!-- Page content -->
-<div class="w3-content" style="max-width:2000px;margin-top:46px">
-
-  <!-- Automatic Slideshow Images -->
-  <div id="slider-content" style="padding-bottom: 20px">
-  <div class="mySlides w3-display-container w3-center">
-    <img src="assets/frontpage_slides/slide_1.jpg" style="width:100%">
-  </div>
-
-  <div class="mySlides w3-display-container w3-center">
-    <img src="assets/frontpage_slides/slide_1.jpg" style="width:100%">
-  </div>
-
-  <div class="mySlides w3-display-container w3-center">
-    <img src="assets/frontpage_slides/slide_1.jpg" style="width:100%">
-  </div>
+<!-- Header slider -->
+<div style="max-width:2000px; height:293px; paddin-bottom:25px">
+  <canvas id="header_canvas"></canvas>
 </div>
 
 <!-- IFrame showing selected topics -->
-<iframe id="content_frame"src="contact.html" name="content_frame" style="width:100%" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>
+<iframe id="content_frame" name="content_frame" style="width:100%" frameborder="0" scrolling="no" onload="resizeIframe(this)"></iframe>
 
-<!-- Footer -->
-<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+<!--footer -->
+<footer class="margin: auto; width: 50%; border: 3px solid green; padding: 10px;">
   <i class="fa fa-facebook-official w3-hover-opacity"></i>
   <i class="fa fa-instagram w3-hover-opacity"></i>
   <i class="fa fa-snapchat w3-hover-opacity"></i>
@@ -84,39 +36,37 @@ body {font-family: "Lato", sans-serif}
 
 <script>
 
+// script main
+window.onload = function() {
+    canvas=document.getElementById("header_canvas");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    headerCtx=canvas.getContext("2d");
+    loadImages(function () {
+      setContentFrame("contact.html", 0);
+    });
+};
+
 // resize events
 window.onresize = function(event) {
   if (isRealValue(iframe)) {
     resizeIframe(iframe);
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    tweenTo(current_image, (canvas.width / 2) - (current_image.width / 2), 0, 390, 268, 700, 0, "ease_out");
   }
 };
 
-// Automatic Slideshow - change image every 4 seconds
-var myIndex = 0;
-carousel();
-
-function carousel() {
-    var i;
-    var x = document.getElementsByClassName("mySlides");
-    for (i = 0; i < x.length; i++) {
-       x[i].style.display = "none";
-    }
-    myIndex++;
-    if (myIndex > x.length) {myIndex = 1}
-    x[myIndex-1].style.display = "block";
-    setTimeout(carousel, 4000);
-}
-
-// Used to toggle the menu on small screens when clicking on the menu button
-function myFunction() {
-  /*
-    var x = document.getElementById("navDemo");
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-    } else {
-        x.className = x.className.replace(" w3-show", "");
-    }*/
-}
+var canvas;
+var headerCtx;
+var images = new Array();
+var images_path_list = new Array(
+  "assets/frontpage/home.jpg",
+  "assets/frontpage/art.jpg",
+  "assets/frontpage/games.jpg"
+);
+var current_image;
+var tween_list = new Array();
 
 // iframe size setup & resize
 var iframe;
@@ -126,28 +76,134 @@ function resizeIframe(obj) {
   obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
 }
 
-function isRealValue(obj)
-{
+function isRealValue(obj) {
   return obj && obj !== 'null' && obj !== 'undefined';
 }
 
-
 // Menu items call iframe
-function setContentFrame(show_page) {
-    document.getElementById("content_frame").src = show_page;
+function setContentFrame(show_page, showImg) {
+
+    current_image = images[showImg];
+    current_image.x = canvas.width;
+    current_image.y = 0;
+
+    draw (current_image);
+    tweenTo(current_image, (canvas.width / 2) - (current_image.width / 2), 0, 390, 268, 700, 0, "ease_out");
+
+    iframe = document.getElementById("content_frame")
+    iframe.src = show_page;
+    resizeIframe(document.getElementById("content_frame"));
 }
 
+// Draw And Animate images
+function DrawImage (image, x, y, width, height){
+  this.image = image;
+  this.x = x;
+  this.y = y;
+  this.width = width;
+  this.height = height;
+}
+function Tween (image, from_x, from_y,from_width, from_height, to_x, to_y, to_width, to_height, duration, delay, play_time, style, onComplete) {
+  this.image = image;
+  this.from_x = from_x; this.from_y = from_y; this.from_width = from_width; this.from_height = from_height;
+  this.to_x = to_x; this.to_y = to_y; this.to_width = to_width; this.to_height = to_height;
+  this.duration = duration;
+  this.delay = delay;
+  this.play_time = play_time;
+  this.style = style;
+  this.onComplete = onComplete;
+  this.destroy = false;
+}
 
+function draw (drawImage) {
+  headerCtx.clearRect(0, 0, canvas.width, canvas.height);
+  headerCtx.drawImage(drawImage.image, drawImage.x, drawImage.y, drawImage.width, drawImage.height);
+}
 
-
-// When the user clicks anywhere outside of the modal, close it
-/*
-var modal = document.getElementById('ticketModal');
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+function tweenTo (drawImage, to_x, to_y, to_width, to_height, duration, delay, style, onComplete) {
+  for (i = 0; i < tween_list.length; i++) {
+    if (tween_list[i].image == drawImage) {
+      tween_list[i].destroy = true;
+      tween_list.splice(i, 1);
+    }
   }
-}*/
+  var tween = new Tween (drawImage, drawImage.x, drawImage.y, drawImage.width, drawImage.height, to_x, to_y, to_width, to_height, duration, delay, 0, style, onComplete);
+  tween_list.push (tween);
+  animateTween (tween);
+}
+
+function animateTween (tween) {
+
+  if (tween.destroy) {
+    tween = null;
+    return;
+  }
+
+  var di = tween.image;
+  var time = tween.play_time - tween.delay;
+
+  if (time >= tween.duration)  {
+    di.x = tween.to_x;
+    di.y = tween.to_y;
+    di.width = tween.to_width;
+    di.height = tween.to_height;
+  }
+  else if (tween.play_time > tween.delay) {
+    var progress = tweenFx((1 / tween.duration) * time, tween.style);
+    di.x = tween.from_x + ((tween.to_x - tween.from_x) * progress);
+    di.y = tween.from_y + ((tween.to_y - tween.from_y) * progress);
+    di.width = tween.from_width + ((tween.to_width - tween.from_width) * progress);
+    di.height = tween.from_height + ((tween.to_height - tween.from_height) * progress);
+  }
+
+  draw (di);
+
+  if (time < tween.duration) {
+    tween.play_time += 40;
+    setTimeout(function () { animateTween (tween); }, 40);
+  } else {
+    if (isRealValue(tween.onComplete)) {
+      tween = null;
+      tween.onComplete();
+    }
+  }
+}
+
+function tweenFx(progress, style) {
+  switch(style) {
+    case "ease":
+        return 1-(0.5+(Math.cos(Math.PI * progress)/2));
+    case "ease_out":
+        return Math.sin(Math.PI * progress / 2);
+    case "ease_in":
+        return 1 - Math.cos(Math.PI * progress / 2);
+        break;
+    default: // default is linear
+        return progress;
+    }
+}
+
+// Image loader
+function loadImages (onCompleteCallback) {
+  for (i = 0; i < images_path_list.length; i++) {
+    loadImage (images_path_list[i], function (image) {
+      images.push(image);
+      if (images.length == images_path_list.length) {
+          onCompleteCallback();
+      }
+    });
+  }
+}
+
+function loadImage (path, onCompleteCallback) {
+  var image = new Image();
+  image.onload = function () {
+    var drawImage = new DrawImage(image, 0, 0, image.width, image.height);
+    onCompleteCallback (drawImage);
+  }
+  image.src = path;
+}
+
 </script>
 
 </body>
