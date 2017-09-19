@@ -83,7 +83,14 @@ function isRealValue(obj) {
 // Menu items call iframe
 function setContentFrame(show_page, showImg) {
 
-    current_image = images[showImg];
+    var index = 0;
+    for (i = 0; i < images.length; i++) {
+      if (images[i].image.src == showImg) {
+        index = i;
+      }
+    }
+
+    current_image = images[index];
     current_image.x = canvas.width;
     current_image.y = 0;
 
